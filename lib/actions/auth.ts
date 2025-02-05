@@ -8,6 +8,8 @@ import { eq, or } from "drizzle-orm";
 import { headers } from "next/headers";
 import ratelimit from "../ratelimit";
 import { redirect } from "next/navigation";
+import { workflowClient } from "../workflow";
+import config from "../config";
 
 export const signInWithCredentials = async (
   // eslint-disable-next-line no-undef
@@ -67,6 +69,11 @@ export const signUp = async (params: AuthCredentials) => {
       status: "PENDING",
     });
 
+    await workflowClient.trigger({url:`${config.env.prodApiEnpoint}/api/workflow/onboarding`,
+      body:{
+        email, fullName
+      }
+    })
     await signInWithCredentials({ email, password });
 
     return { success: true };
