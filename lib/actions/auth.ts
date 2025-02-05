@@ -69,7 +69,7 @@ export const signUp = async (params: AuthCredentials) => {
       status: "PENDING",
     });
 
-    await workflowClient.trigger({url:`${config.env.prodApiEnpoint}/api/workflow/onboarding`,
+    await workflowClient.trigger({url:`${config.env.prodApiEnpoint}/api/workflows/onboarding`,
       body:{
         email, fullName
       }
