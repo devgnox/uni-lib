@@ -26,7 +26,7 @@ export const sendEmail = async ({
       provider: resend({ token: config.env.resendToken! }),
     },
     body: {
-      from: "Gabby <hello.devnox-portfolio.netlify.app>",
+      from: "Gabby <dev.gnox@gmail.com>",
       to: [email],
       subject,
       html: `<p>${message}</p>`,
